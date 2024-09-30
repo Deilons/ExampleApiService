@@ -7,21 +7,29 @@ using System.Threading.Tasks;
 
 namespace ExampleApiService.Models;
 
-    public class Vehicle
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("Id")]
-        [Required]
-        public int Id { get; set; }
+public class Vehicle
+{
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Column("Id")]
+    [Required]
+    public int Id { get; set; }
 
-        public string Make { get; set; }
+    [Required]
+    public string Make { get; set; }
 
-        public string Model { get; set; }
+    [Required]
+    public string Model { get; set; }
 
-        public int Year { get; set; }
+    [Required]
+    [Range(1970,9999)]
+    public int Year { get; set; }
 
-        public double Price { get; set; }
+    [Required]
+    [Range(double.Epsilon, double.MaxValue)]
+    public double Price { get; set; }
 
-        public string Color { get; set; }
-    }
+    [Required]
+    [StringLength(100)]
+    public string Color { get; set; }
+}
