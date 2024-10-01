@@ -1,5 +1,7 @@
 using DotNetEnv;
 using ExampleApiService.Data;
+using ExampleApiServices.Repositories;
+using ExampleApiServices.Services;
 using Microsoft.EntityFrameworkCore;
 
 Env.Load();
@@ -17,8 +19,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.Parse("8.0.20-mysql")));
-
-// Add services to the container.
+builder.Services.AddScoped<VehicleServices>();
+builder.Services.AddScoped<IVehicleRepository, IVehicleRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
