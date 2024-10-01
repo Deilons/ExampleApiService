@@ -9,15 +9,6 @@ namespace ExampleApiService.Models;
 
 public class Vehicle
 {
-    public Vehicle(string make, string model, int year, double price, string color)
-    {
-        Make = make;
-        Model = model;
-        Year = year;
-        Price = price;
-        Color = color;
-    }
-
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("Id")]
@@ -41,4 +32,13 @@ public class Vehicle
     [Required]
     [StringLength(100)]
     public string Color { get; set; }
+
+    public Vehicle(string make, string model, int year, double price, string color)
+    {
+        Make = make.ToLower().Trim();
+        Model = model.ToLower().Trim();;
+        Year = year;
+        Price = price;
+        Color = color.ToLower().Trim();;
+    }
 }
